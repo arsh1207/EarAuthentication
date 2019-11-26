@@ -85,7 +85,6 @@ class Preprocessing:
         # reduced_sw = model.fit_transform(gb_all_sw)
         reduced_sw = model.fit_transform(gb_all_sw)
         
-        
         knn = KNeighborsClassifier(n_neighbors=5)
         sffs = SFS(knn, 
            k_features=5, 
@@ -114,28 +113,28 @@ class Preprocessing:
         gamma = 0.5
         for theta in [0, 45, 90, 180]:
             for sigma in [5, 10, 15, 20]:
-                kernel = np.real(cv2.getGaborKernel((12, 12), sigma, theta, 10.0, 0.5, 0, ktype=cv2.CV_32F))
-                # print(kernel.shape)
-                # print(kernel)
-                # kernels = np.append(kernels, kernel, axis=0)
-                kernels.append(kernel)
-#                 sigma_x = sigma
-#                 sigma_y = float(sigma) / gamma
-#                 nstds = 3
-#                 xmax = max(abs(nstds * sigma_x * np.cos(theta)), abs(nstds * sigma_y * np.sin(theta)))
-#                 xmax = np.ceil(max(1, xmax))
-#                 ymax = max(abs(nstds * sigma_x * np.sin(theta)), abs(nstds * sigma_y * np.cos(theta)))
-#                 ymax = np.ceil(max(1, ymax))
-#                 xmin = -xmax
-#                 ymin = -ymax
-#                 y, x = np.meshgrid(np.arrange(ymin, ymax + 1), np.arrange(xmin, xmax + 1))
-#                 
-#                 x_theta = x * np.cos(theta) + y * np.sin(theta)
-#                 y_theta = -x * np.sin(theta) + y * np.cos(theta)
-#                 
-#                 gb = np.exp( -.5 * (x_theta ** 2 / sigma_x ** 2 + y_theta ** 2 / sigma_y ** 2)) * np.cos(2 * np.pi / Lambda * x_theta + psi)
-#                 
-#                 kernels.append(gb)
+#                kernel = np.real(cv2.getGaborKernel((12, 12), sigma, theta, 10.0, 0.5, 0, ktype=cv2.CV_32F))
+#                # print(kernel.shape)
+#                # print(kernel)
+#                # kernels = np.append(kernels, kernel, axis=0)
+#                kernels.append(kernel)
+                 sigma_x = sigma
+                 sigma_y = float(sigma) / gamma
+                 nstds = 3
+                 xmax = max(abs(nstds * sigma_x * np.cos(theta)), abs(nstds * sigma_y * np.sin(theta)))
+                 xmax = np.ceil(max(1, xmax))
+                 ymax = max(abs(nstds * sigma_x * np.sin(theta)), abs(nstds * sigma_y * np.cos(theta)))
+                 ymax = np.ceil(max(1, ymax))
+                 xmin = -xmax
+                 ymin = -ymax
+                 y, x = np.meshgrid(np.arrange(ymin, ymax + 1), np.arrange(xmin, xmax + 1))
+                 
+                 x_theta = x * np.cos(theta) + y * np.sin(theta)
+                 y_theta = -x * np.sin(theta) + y * np.cos(theta)
+                 
+                 gb = np.exp( -.5 * (x_theta ** 2 / sigma_x ** 2 + y_theta ** 2 / sigma_y ** 2)) * np.cos(2 * np.pi / Lambda * x_theta + psi)
+                 
+                 kernels.append(gb)
                  
         return kernels
 
