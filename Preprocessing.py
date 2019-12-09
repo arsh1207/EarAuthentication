@@ -165,6 +165,24 @@ class Preprocessing:
             true_prediction = true_prediction+1
       percentage = (true_prediction/total_img) *100
       return percentage
+    
+    def pca_without_gabor(self,processed_image1):
+        data =[]
+        for i in range(len(processed_image1)):
+          data.append(processed_image1[i].flatten())
+        pca=PCA()
+        print (data)
+        pca.fit(data)
+        c= data
+        # g = np.array(c)
+        # print("Raw data size")
+        # print(g.shape)
+        data = pca.transform(data)
+        t = np.array(data)
+        t.shape
+        print("changed data dimension")
+        print(t.shape)
+        return t
 
 obj = Preprocessing()
 processed_image = obj.read_image()
