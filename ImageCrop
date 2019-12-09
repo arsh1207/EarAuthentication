@@ -1,0 +1,8 @@
+#put the below code in read image method.
+#instead of this line: images.append(cv2.resize(cv2.imread("EarImages/"+i+'_'+j+".jpg", cv2.IMREAD_GRAYSCALE), dsize=(100, 150), interpolation=cv2.INTER_NEAREST))
+#it should have below code
+
+
+old_img = cv2.imread("EarImages/"+i+'_'+j+".jpg", cv2.IMREAD_GRAYSCALE)
+img = old_img[100:620, 40:450]
+images.append(cv2.resize(cv2.imread(img, dsize=(100, 150), interpolation=cv2.INTER_NEAREST))
