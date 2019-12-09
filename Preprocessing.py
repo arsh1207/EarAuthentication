@@ -148,6 +148,23 @@ class Preprocessing:
         # np.maximum(accum, fimg, accum)
         return gabored_images
 
+    def rank_calculation(predicted,actual,rank):
+      total_img = len(predicted)
+      true_prediction = 0;
+      for i in range(total_img):
+        # row_mat = predicted[i]
+        d1 = np.zeros((2,len(predicted[0])))
+        for j in range(len(d1[0])):
+          d1[0][j]=j  
+        d1[1]= predicted[i]
+        ##thinking its sorted
+        d = d1[:,d1[1].argsort()]
+        print(d)
+        for k in range(len(d[0])-1,len(d[0]) -rank -1, -1):
+          if(d[0][k] == actual[i]):
+            true_prediction = true_prediction+1
+      percentage = (true_prediction/total_img) *100
+      return percentage
 
 obj = Preprocessing()
 processed_image = obj.read_image()
